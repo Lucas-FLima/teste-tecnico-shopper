@@ -1,0 +1,46 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "mysql"
+    url      = env("DATABASE_URL")
+}
+
+model User {
+    id      Int      @id @default(autoincrement())
+    travels Travel[]
+}
+
+model Driver {
+    id          Int      @id @default(autoincrement())
+    name        String
+    description String
+    vehicle     String
+    rating      String
+    comment     String
+    rating_km   Float
+    min_km      Float
+    travels     Travel[]
+}
+
+model Travel {
+    id          Int      @id @default(autoincrement())
+    userId      Int
+    driverId    Int
+    origin      String
+    destination String
+    distance    Float
+    duration    String
+    value       Float
+    createdAt   DateTime @default(now())
+
+    user   User   @relation(fields: [userId], references: [id])
+    driver Driver @relation(fields: [driverId], references: [id])
+
+    // Uso o @@index para criar um índice composto para as colunas userId e driverId 
+    // ajuda na performance de consultas, principalmente em tabelas grandes
+    // principalmente quando fazemos filtragem
+    @@index([userId], name: "userId")
+    @@index([driverId], name: "driverId")
+}

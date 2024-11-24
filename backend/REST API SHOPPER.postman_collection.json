@@ -1,0 +1,686 @@
+{
+	"info": {
+		"_postman_id": "f9b86d98-13c9-49e3-9202-0261fb9cd0f3",
+		"name": "REST API SHOPPER",
+		"description": "# 🚀 Get started here\n\nThis template guides you through CRUD operations (GET, POST, PUT, DELETE), variables, and tests.\n\n## 🔖 **How to use this template**\n\n#### **Step 1: Send requests**\n\nRESTful APIs allow you to perform CRUD operations using the POST, GET, PUT, and DELETE HTTP methods.\n\nThis collection contains each of these [request](https://learning.postman.com/docs/sending-requests/requests/) types. Open each request and click \"Send\" to see what happens.\n\n#### **Step 2: View responses**\n\nObserve the response tab for status code (200 OK), response time, and size.\n\n#### **Step 3: Send new Body data**\n\nUpdate or add new data in \"Body\" in the POST request. Typically, Body data is also used in PUT request.\n\n```\n{\n    \"name\": \"Add your name in the body\"\n}\n\n ```\n\n#### **Step 4: Update the variable**\n\nVariables enable you to store and reuse values in Postman. We have created a [variable](https://learning.postman.com/docs/sending-requests/variables/) called `base_url` with the sample request [https://postman-api-learner.glitch.me](https://postman-api-learner.glitch.me). Replace it with your API endpoint to customize this collection.\n\n#### **Step 5: Add tests in the \"Scripts\" tab**\n\nAdding tests to your requests can help you confirm that your API is working as expected. You can write test scripts in JavaScript and view the output in the \"Test Results\" tab.\n\n<img src=\"https://content.pstmn.io/fa30ea0a-373d-4545-a668-e7b283cca343/aW1hZ2UucG5n\" alt=\"\" height=\"1530\" width=\"2162\">\n\n## 💪 Pro tips\n\n- Use folders to group related requests and organize the collection.\n    \n- Add more [scripts](https://learning.postman.com/docs/writing-scripts/intro-to-scripts/) to verify if the API works as expected and execute workflows.\n    \n\n## 💡Related templates\n\n[API testing basics](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9a37a28-055b-49cd-8c7e-97494a21eb54&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[API documentation](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9c28f47-1253-44af-a2f3-20dce4da1f18&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[Authorization methods](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=31a9a6ed-4cdf-4ced-984c-d12c9aec1c27&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25407007"
+	},
+	"item": [
+		{
+			"name": "Envia os endereços",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"    pm.expect(pm.response.json().description).to.eql('Os dados fornecidos no corpo da requisição são inválidos.')",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"customer_id\": \"1\",\r\n    \"origin\": \"R. Heitor Viêira de Almeida - Campo Grande, MS, 79106-053\",\r\n    \"destination\": \"R. Goiás - Campo Grande, MS, 79321-784\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/ride/estimate",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"ride",
+						"estimate"
+					]
+				},
+				"description": "Rota responsável por receber a origem e o destino da viagem e realizar os cálculos dos valores da viagem."
+			},
+			"response": [
+				{
+					"name": "Envia os endereços (200)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"customer_id\": \"1\",\r\n    \"origin\": \"1600 Amphitheatre Parkway, Mountain View, CA 94043, USA\",\r\n    \"destination\": \"450 Serra Mall, Stanford, CA 94305, USA\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/ride/estimate",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"ride",
+								"estimate"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "2073"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"819-6GeMIaDmhvJsmSISyBzC+33bf2o\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 22 Nov 2024 02:38:20 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"origin\": {\n        \"latitude\": 37.422723399999995,\n        \"longitude\": -122.08478489999997\n    },\n    \"destination\": {\n        \"latitude\": 37.429057799999995,\n        \"longitude\": -122.16940679999999\n    },\n    \"distance\": 10.494,\n    \"duration\": \"1128s\",\n    \"options\": [\n        {\n            \"id\": 1,\n            \"name\": \"Homer Simpson\",\n            \"description\": \"Olá! Sou o Homer, seu motorista camarada! Relaxe e aproveite o passeio, com direito a rosquinhas e boas risadas (e talvez alguns desvios).\",\n            \"vehicle\": \"Plymouth Valiant 1973 rosa e enferrujado\",\n            \"review\": {\n                \"rating\": \"2/5\",\n                \"comment\": \"Motorista simpático, mas errou o caminho 3 vezes. O carro cheira a donuts.\"\n            },\n            \"value\": 26.235\n        },\n        {\n            \"id\": 2,\n            \"name\": \"Dominic Toretto\",\n            \"description\": \"Ei, aqui é o Dom. Pode entrar, vou te levar com segurança e rapidez ao seu destino. Só não mexa no rádio, a playlist é sagrada.\",\n            \"vehicle\": \"Dodge Charger R/T 1970 modificado\",\n            \"review\": {\n                \"rating\": \"4/5\",\n                \"comment\": \"Que viagem incrível! O carro é um show à parte e o motorista, apesar de ter uma cara de poucos amigos, foi super gente boa. Recomendo!\"\n            },\n            \"value\": 52.47\n        },\n        {\n            \"id\": 3,\n            \"name\": \"James Bond\",\n            \"description\": \"Boa noite, sou James Bond. À seu dispor para um passeio suave e discreto. Aperte o cinto e aproveite a viagem.\",\n            \"vehicle\": \"Aston Martin DB5 clássico\",\n            \"review\": {\n                \"rating\": \"5/5\",\n                \"comment\": \"Serviço impecável! O motorista é a própria definição de classe e o carro é simplesmente magnífico. Uma experiência digna de um agente secreto.\"\n            },\n            \"value\": 104.94\n        }\n    ],\n    \"routeResponse\": {\n        \"routes\": [\n            {\n                \"legs\": [\n                    {\n                        \"distanceMeters\": 10494,\n                        \"duration\": \"1128s\",\n                        \"startLocation\": {\n                            \"latLng\": {\n                                \"latitude\": 37.422723399999995,\n                                \"longitude\": -122.08478489999997\n                            }\n                        },\n                        \"endLocation\": {\n                            \"latLng\": {\n                                \"latitude\": 37.429057799999995,\n                                \"longitude\": -122.16940679999999\n                            }\n                        }\n                    }\n                ],\n                \"distanceMeters\": 10494,\n                \"duration\": \"1128s\",\n                \"polyline\": {\n                    \"encodedPolyline\": \"_clcFztchVECMf@EDERw@Mg@fFKbAOTsAxLGr@@rARfBp@lCN^b@t@l@l@VNP`@Zp@rAhFLx@?d@Kr@c@|@sDhG@`@}D`GkCnDuChDo`@fb@aCjC{GdH}AzAm{@n~@Y?gEpDkFbGuF|FiAhAuB`CmEpE}AbBMCWDYC[UOYGc@?c@Jo@R_@VQZAXHTZJVHDl@bCf@tAh@dAvDfG~@hBLNf@|AjBjJlh@xoCfAxFtBvKn@dBj@vBzA`JXdDbAxF?RZhBTv@zCvIb@z@CjA@p@Fl@IR?L}@dCoEnKu@hCt`@hJ~FvA`@t@p@z@l@f@xAv@n@Ph@FhA?NINQJ_@L{@@_@\"\n                }\n            }\n        ]\n    }\n}"
+				},
+				{
+					"name": "Envia os endereços (400)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"customer_id\": \"\",\r\n    \"origin\": \"\",\r\n    \"destination\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/ride/estimate",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"ride",
+								"estimate"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "107"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"6b-QHhERzTJ25pl29+rIYbO6Qefe40\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 23 Nov 2024 14:07:54 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error_code\": \"INVALID_DATA\",\n    \"description\": \"Os dados fornecidos no corpo da requisição são inválidos.\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Listar viagens",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/ride/:customer_id",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"ride",
+						":customer_id"
+					],
+					"query": [
+						{
+							"key": "driver_id",
+							"value": "",
+							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"key": "customer_id",
+							"value": "1"
+						}
+					]
+				},
+				"description": "Rota responsável por listar as viagens realizadas por um determinado usuário."
+			},
+			"response": [
+				{
+					"name": "Success no filters",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/ride/:customer_id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"ride",
+								":customer_id"
+							],
+							"query": [
+								{
+									"key": "driver_id",
+									"value": "2",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "customer_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "877"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"36d-LFL7gJhoaGGP61kdZ5VIsFMy2dA\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 24 Nov 2024 01:01:45 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"customer_id\": \"1\",\n        \"rides\": [\n            {\n                \"id\": 3,\n                \"date\": \"2024-11-23T23:53:29.653Z\",\n                \"origin\": \"R. Heitor Viêira de Almeida - Campo Grande, MS, 79106-053\",\n                \"destination\": \"R. Goiás - Campo Grande, MS, 79321-784\",\n                \"distance\": 13064,\n                \"duration\": \"1440s\",\n                \"driver\": {\n                    \"id\": 2,\n                    \"name\": \"Dominic Toretto\"\n                },\n                \"value\": 65.32\n            }\n        ]\n    },\n    {\n        \"customer_id\": \"1\",\n        \"rides\": [\n            {\n                \"id\": 2,\n                \"date\": \"2024-11-23T23:52:40.860Z\",\n                \"origin\": \"R. Heitor Viêira de Almeida - Campo Grande, MS, 79106-053\",\n                \"destination\": \"R. Goiás - Campo Grande, MS, 79321-784\",\n                \"distance\": 13064,\n                \"duration\": \"1440s\",\n                \"driver\": {\n                    \"id\": 2,\n                    \"name\": \"Dominic Toretto\"\n                },\n                \"value\": 65.32\n            }\n        ]\n    },\n    {\n        \"customer_id\": \"1\",\n        \"rides\": [\n            {\n                \"id\": 1,\n                \"date\": \"2024-11-23T23:52:13.750Z\",\n                \"origin\": \"R. Heitor Viêira de Almeida - Campo Grande, MS, 79106-053\",\n                \"destination\": \"R. Goiás - Campo Grande, MS, 79321-784\",\n                \"distance\": 13064,\n                \"duration\": \"1440s\",\n                \"driver\": {\n                    \"id\": 2,\n                    \"name\": \"Dominic Toretto\"\n                },\n                \"value\": 65.32\n            }\n        ]\n    }\n]"
+				},
+				{
+					"name": "Success with filters",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/ride/:customer_id?driver_id=3",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"ride",
+								":customer_id"
+							],
+							"query": [
+								{
+									"key": "driver_id",
+									"value": "3"
+								}
+							],
+							"variable": [
+								{
+									"key": "customer_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "289"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"121-PSu3lMgwx7Xj7XS5h7XqJiipOfI\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 24 Nov 2024 01:03:29 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"customer_id\": \"1\",\n        \"rides\": [\n            {\n                \"id\": 4,\n                \"date\": \"2024-11-24T01:03:15.471Z\",\n                \"origin\": \"R. Heitor Viêira de Almeida - Campo Grande, MS, 79106-053\",\n                \"destination\": \"R. Goiás - Campo Grande, MS, 79321-784\",\n                \"distance\": 13064,\n                \"duration\": \"1440s\",\n                \"driver\": {\n                    \"id\": 3,\n                    \"name\": \"James Bond\"\n                },\n                \"value\": 130.64\n            }\n        ]\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Confirma viagem",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful PUT request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"customer_id\": \"1\",\n    \"origin\": \"R. Heitor Viêira de Almeida - Campo Grande, MS, 79106-053\",\n    \"destination\": \"R. Goiás - Campo Grande, MS, 79321-784\",\n    \"distance\": 13064,\n    \"duration\": \"1440s\",\n    \"driver\": {\n        \"id\": 3,\n        \"name\": \"James Bond\"\n    },\n    \"value\": 130.64\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/ride/confirm",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"ride",
+						"confirm"
+					]
+				},
+				"description": "Rota responsável por confirmar a viagem e gravá-la no histórico."
+			},
+			"response": [
+				{
+					"name": "Invalid distance",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"customer_id\": \"1\",\n    \"origin\": \"R. Heitor Viêira de Almeida - Campo Grande, MS, 79106-053\",\n    \"destination\": \"R. Goiás - Campo Grande, MS, 79321-784\",\n    \"distance\": 13.064,\n    \"duration\": \"1440s\",\n    \"driver\": {\n        \"id\": 2,\n        \"name\": \"Dominic Toretto\"\n    },\n    \"value\": 65.32\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/ride/confirm",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"ride",
+								"confirm"
+							]
+						}
+					},
+					"status": "Not Acceptable",
+					"code": 406,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "91"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"5b-YVcWyUU5huqdEBAZ+Y3wLfadEyk\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 23 Nov 2024 23:49:13 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error_code\": \"INVALID_DISTANCE\",\n    \"description\": \"Quilometragem inválida para o motorista.\"\n}"
+				},
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"customer_id\": \"1\",\n    \"origin\": \"R. Heitor Viêira de Almeida - Campo Grande, MS, 79106-053\",\n    \"destination\": \"R. Goiás - Campo Grande, MS, 79321-784\",\n    \"distance\": 13064,\n    \"duration\": \"1440s\",\n    \"driver\": {\n        \"id\": 2,\n        \"name\": \"Dominic Toretto\"\n    },\n    \"value\": 65.32\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/ride/confirm",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"ride",
+								"confirm"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "16"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"10-oV4hJxRVSENxc/wX8+mA4/Pe4tA\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 23 Nov 2024 23:53:29 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": true\n}"
+				},
+				{
+					"name": "Not found driver",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"customer_id\": \"1\",\n    \"origin\": \"R. Heitor Viêira de Almeida - Campo Grande, MS, 79106-053\",\n    \"destination\": \"R. Goiás - Campo Grande, MS, 79321-784\",\n    \"distance\": 13064,\n    \"duration\": \"1440s\",\n    \"driver\": {\n        \"id\": 6,\n        \"name\": \"Dominic Toretto\"\n    },\n    \"value\": 65.32\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/ride/confirm",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"ride",
+								"confirm"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "76"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"4c-/VQfsZyoV0gWdc62iR3myYCvZvY\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 23 Nov 2024 23:55:19 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error_code\": \"DRIVER_NOT_FOUND\",\n    \"description\": \"Motorista não encontrado.\"\n}"
+				},
+				{
+					"name": "Invalid data",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"origin\": \"R. Heitor Viêira de Almeida - Campo Grande, MS, 79106-053\",\n    \"destination\": \"R. Goiás - Campo Grande, MS, 79321-784\",\n    \"distance\": 13064,\n    \"duration\": \"1440s\",\n    \"driver\": {\n        \"id\": 6,\n        \"name\": \"Dominic Toretto\"\n    },\n    \"value\": 65.32\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/ride/confirm",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"ride",
+								"confirm"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "107"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"6b-QHhERzTJ25pl29+rIYbO6Qefe40\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 23 Nov 2024 23:55:59 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error_code\": \"INVALID_DATA\",\n    \"description\": \"Os dados fornecidos no corpo da requisição são inválidos.\"\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "id",
+			"value": "1"
+		},
+		{
+			"key": "base_url",
+			"value": "https://postman-rest-api-learner.glitch.me/"
+		}
+	]
+}
