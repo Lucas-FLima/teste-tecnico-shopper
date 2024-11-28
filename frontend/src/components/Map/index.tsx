@@ -1,8 +1,8 @@
 import {
-    GoogleMap,
-    Marker,
-    Polyline,
-    useJsApiLoader,
+  GoogleMap,
+  Marker,
+  Polyline,
+  useJsApiLoader,
 } from "@react-google-maps/api";
 import { useState } from "react";
 
@@ -26,7 +26,7 @@ const containerStyle = {
 export default function Map({ origin, destination, polyline }: MapProps) {
   const libraries: ("places" | "geometry")[] = ["geometry"];
   const { isLoaded } = useJsApiLoader({
-    googleMapsApiKey: "AIzaSyDKvpN-IBbRReysQDIoWVwXU9UDfkAHvd8",
+    googleMapsApiKey: process.env.GOOGLE_API_KEY || "",
     libraries,
   });
 
