@@ -46,7 +46,7 @@ class EstimateService {
       routeResponse: route,
     };
 
-    return { formattedData };
+    return { ...formattedData };
   }
 }
 

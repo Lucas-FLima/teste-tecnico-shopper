@@ -8,11 +8,13 @@ COPY package*.json ./
 
 RUN npm install
 
+RUN npm install -g prisma
+
 COPY . .
 
 COPY entrypoint.sh /app/entrypoint.sh
 RUN chmod +x /app/entrypoint.sh
 
-EXPOSE ${PORT}
+EXPOSE 8080
 
 CMD ["/app/entrypoint.sh"]

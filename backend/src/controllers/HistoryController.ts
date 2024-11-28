@@ -25,7 +25,7 @@ class HistoryController {
       throw new AppError("NO_RIDES_FOUND", "Nenhum registro encontrado.", 404);
     }
 
-    res.json(history);
+    return res.json(history);
   }
 }
 

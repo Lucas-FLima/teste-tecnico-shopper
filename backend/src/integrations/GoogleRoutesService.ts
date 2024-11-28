@@ -4,7 +4,7 @@ class GoogleRoutesService {
   private apiKey: string;
 
   constructor() {
-    this.apiKey = process.env.GOOGLE_MAPS_API_KEY || "";
+    this.apiKey = process.env.GOOGLE_API_KEY || "";
   }
 
   async getRoute(origin: string, destination: string) {
